@@ -6,7 +6,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { RBTree } from '../models';
+import { Color, Node } from '../models';
 
 @Component({
   selector: 'tree',
@@ -15,9 +15,15 @@ import { RBTree } from '../models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeComponent implements OnInit {
-  @Input() tree: RBTree;
+  @Input() root: Node;
+  left: Node;
+  right: Node;
+  Color = Color;
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.left = this.root && this.root.children.left;
+    this.right = this.root && this.root.children.right;
+  }
 }

@@ -3,5 +3,5 @@
 <button (click)="insert(input.value)">삽입</button>
 <button (click)="clearAll()">전체 삭제</button>
 <div class="tree">
-  <tree [tree]="rbTree"></tree>
+  <tree [root]="rbTree.root"></tree>
 </div>

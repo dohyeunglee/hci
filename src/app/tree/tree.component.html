@@ -1,1 +1,19 @@
-<node [node]="tree?.root"></node>
+<div class="circle" [style.background]="root?.color | color">
+  <b>{{ root?.value }}</b>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <tree *ngIf="left else nil" [root]="left"></tree>
+    </div>
+    <div class="col">
+      <tree *ngIf="right else nil" [root]="right"></tree>
+    </div>
+  </div>
+</div>
+
+<ng-template #nil>
+  <div class="circle">
+    <b>nil</b>
+  </div>
+</ng-template>
