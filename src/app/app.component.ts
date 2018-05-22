@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RBTreeService } from './rb-tree.service';
+import { RBTree } from './models';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  rbTree: RBTree = {
+    root: null,
+    violations: null
+  };
+  constructor(private tree: RBTreeService) {}
 }
