@@ -1,9 +1,9 @@
-<div class="circle" [style.background]="root?.color | color">
+<div #rootElem class="circle" [style.background]="root?.color | color">
   <b>{{ root?.value }}</b>
 </div>
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col" #leftElem>
       <tree *ngIf="left else nil" [root]="left"></tree>
     </div>
     <div class="col">

@@ -4,7 +4,9 @@ import {
   Input,
   Output,
   EventEmitter,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ViewChild,
+  AfterViewInit
 } from '@angular/core';
 import { Color, Node } from '../models';
 
@@ -14,11 +16,12 @@ import { Color, Node } from '../models';
   styleUrls: ['./tree.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TreeComponent implements OnInit {
+export class TreeComponent implements OnInit, AfterViewInit {
   @Input() root: Node;
+  @ViewChild('rootElem') rootElem;
+  @ViewChild('leftElem') leftElem;
   left: Node;
   right: Node;
-  Color = Color;
 
   constructor() {}
 
@@ -26,4 +29,6 @@ export class TreeComponent implements OnInit {
     this.left = this.root && this.root.children.left;
     this.right = this.root && this.root.children.right;
   }
+
+  ngAfterViewInit() {}
 }

@@ -1,7 +1,11 @@
 <h1>HCI RBTree</h1>
-<input type="number" #input/>
-<button (click)="insert(input.value)">삽입</button>
-<button (click)="clearAll()">전체 삭제</button>
+<div class="input-group mb-3 toolbar">
+  <input #input type="number" class="form-control" placeholder="값">
+  <div class="input-group-append">
+    <button class="btn btn-outline-primary" (click)="insert(input.value)">삽입</button>
+  </div>
+  <button class="btn btn-outline-danger" (click)="clearAll()">전체 삭제</button>
+</div>
 <div class="tree">
   <tree [root]="rbTree.root"></tree>
 </div>
