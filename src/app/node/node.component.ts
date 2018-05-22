@@ -6,7 +6,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { Color } from '../models';
+import { Color, Node } from '../models';
 
 @Component({
   selector: 'node',
@@ -15,8 +15,8 @@ import { Color } from '../models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NodeComponent implements OnInit {
-  @Input() value: any;
-  @Input() color: Color;
+  @Input() node: Node;
+  Color = Color;
 
   constructor() {}
 
