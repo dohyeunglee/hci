@@ -16,9 +16,14 @@ import { Color, Node } from '../models';
 })
 export class NodeComponent implements OnInit {
   @Input() node: Node;
+  left: Node;
+  right: Node;
   Color = Color;
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.left = this.node && this.node.children.left;
+    this.right = this.node && this.node.children.right;
+  }
 }

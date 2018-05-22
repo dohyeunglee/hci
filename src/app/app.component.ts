@@ -13,7 +13,23 @@ export class AppComponent {
       id: '1',
       value: 1,
       children: {
-        left: null,
+        left: {
+          id: '2',
+          value: 2,
+          children: {
+            left: {
+              value: 3,
+              id: '3',
+              children: {
+                left: null,
+                right: null
+              },
+              color: Color.RED
+            },
+            right: null
+          },
+          color: Color.RED
+        },
         right: null
       },
       color: Color.BLACK

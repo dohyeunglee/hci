@@ -11,7 +11,9 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.ts": ["prettier --write --single-quote"]
+    "*.ts": [
+      "prettier --write --single-quote"
+    ]
   },
   "private": true,
   "dependencies": {
@@ -25,10 +27,11 @@
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/pwa": "^0.6.3",
     "@angular/router": "^6.0.0",
+    "@angular/service-worker": "^6.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^2.0.0",
     "core-js": "^2.5.4",
     "rxjs": "^6.0.0",
-    "zone.js": "^0.8.26",
-    "@angular/service-worker": "^6.0.0"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.0",
