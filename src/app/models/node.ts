@@ -1,32 +1,36 @@
 import { Color } from './color';
 
+let id = 0;
+
 export class Node {
-  key: number;
+  id = id++;
+  value: number;
   color: Color;
   parent: Node;
   left: Node;
   right: Node;
 
-  constructor(key: number, color = Color.BLACK) {
-    this.key = key;
+  constructor(value: number, color = Color.BLACK) {
+    this.value = value;
     this.color = color;
     this.parent = null;
     this.left = null;
     this.right = null;
   }
-
-  get isNil() {
-    return (
-      this.key === null &&
-      this.color === Color.BLACK &&
-      this.left === null &&
-      this.right === null
-    );
-  }
 }
 
-export function createNode(key: number): Node {
-  const node = new Node(key);
+export function isNilNode(node: Node) {
+  return (
+    node === null ||
+    (node.value === null &&
+      node.color === Color.BLACK &&
+      node.left === null &&
+      node.right === null)
+  );
+}
+
+export function createNode(value: number): Node {
+  const node = new Node(value);
   const leftLeaf = new Node(null);
   leftLeaf.parent = node;
   const rightLeaf = new Node(null);

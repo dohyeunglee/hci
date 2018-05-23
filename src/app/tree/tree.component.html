@@ -1,13 +1,13 @@
 <div class="circle" [style.background]="root?.color === Color.RED ? 'red' : 'black'">
-  <b>{{ root?.key }}</b>
+  <b>{{ root?.value }}</b>
 </div>
 <div class="container">
   <div class="row">
     <div class="col">
-      <tree *ngIf="!left?.isNil else nil" [root]="left"></tree>
+      <tree *ngIf="!isNilNode(left) else nil" [root]="left"></tree>
     </div>
     <div class="col">
-      <tree *ngIf="!right?.isNil else nil" [root]="right"></tree>
+      <tree *ngIf="!isNilNode(right) else nil" [root]="right"></tree>
     </div>
   </div>
 </div>

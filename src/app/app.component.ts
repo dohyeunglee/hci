@@ -11,9 +11,8 @@ export class AppComponent {
 
   constructor() {}
 
-  insert(key: string) {
-    this.rbTree.insertByAlgorithm(Number.parseInt(key));
-    console.log(this.rbTree);
+  insert(value: string) {
+    this.rbTree.insertByAlgorithm(Number.parseInt(value));
   }
 
   clearAll() {}

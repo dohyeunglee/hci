@@ -1,5 +1,5 @@
 import { RBProperty } from './property';
-import { Node, createLeafNode } from './node';
+import { Node, createLeafNode, isNilNode } from './node';
 import { Color } from './color';
 
 export class RBTree {
@@ -14,25 +14,23 @@ export class RBTree {
     this.root = null;
   }
 
-  insertByAlgorithm(key: number) {
-    const newNode = new Node(key);
+  insertByAlgorithm(value: number) {
+    const newNode = new Node(value);
     if (!this.root) {
       this.root = newNode;
-      newNode.left = createLeafNode(newNode);
-      newNode.right = createLeafNode(newNode);
     } else {
       let parent = null;
       let search = this.root;
-      while (!search.isNil) {
+      while (!isNilNode(search)) {
         parent = search;
-        if (newNode.key < search.key) {
+        if (newNode.value < search.value) {
           search = search.left;
         } else {
           search = search.right;
         }
       }
       newNode.parent = parent;
-      if (newNode.key < parent.key) {
+      if (newNode.value < parent.value) {
         parent.left = newNode;
       } else {
         parent.right = newNode;
@@ -87,17 +85,17 @@ export class RBTree {
 
   rotateLeft(node: Node) {
     const y = node.right;
-    if (y.left.isNil) {
+    if (isNilNode(y.left)) {
       node.right = createLeafNode(node);
     } else {
       node.right = y.left;
     }
 
-    if (!y.left.isNil) {
+    if (!isNilNode(y.left)) {
       y.left.parent = node;
     }
     y.parent = node.parent;
-    if (node.parent.isNil) {
+    if (isNilNode(node.parent)) {
       this.root = y;
     } else {
       if (node === node.parent.left) {
@@ -113,17 +111,17 @@ export class RBTree {
   rotateRight(node: Node) {
     const y = node.left;
 
-    if (y.right.isNil) {
+    if (isNilNode(y.right)) {
       node.left = createLeafNode(node);
     } else {
       node.left = y.right;
     }
 
-    if (!y.right.isNil) {
+    if (!isNilNode(y.right)) {
       y.right.parent = node;
     }
     y.parent = node.parent;
-    if (node.parent.isNil) {
+    if (isNilNode(node.parent)) {
       this.root = y;
     } else {
       if (node === node.parent.right) {
