@@ -17,6 +17,14 @@ export class Node {
     this.left = null;
     this.right = null;
   }
+
+  clone(): Node {
+    const cloned = new Node(this.value, this.color);
+    cloned.parent = this.parent && this.parent.clone();
+    cloned.left = this.left && this.left.clone();
+    cloned.right = this.right && this.right.clone();
+    return cloned;
+  }
 }
 
 export function isNilNode(node: Node) {

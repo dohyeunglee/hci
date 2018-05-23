@@ -11,8 +11,20 @@ export class AppComponent {
 
   constructor() {}
 
-  insert(value: string) {
-    this.rbTree.insertByAlgorithm(Number.parseInt(value));
+  onInsert(value: number) {
+    this.rbTree.insertByAlgorithm(value);
+  }
+
+  onClearAll() {
+    this.rbTree.clearAll();
+  }
+
+  onRedo() {
+    this.rbTree.redo();
+  }
+
+  onUndo() {
+    this.rbTree.undo();
   }
 
   clearAll() {}

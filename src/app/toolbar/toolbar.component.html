@@ -1,0 +1,9 @@
+<div class="input-group mb-3 toolbar">
+  <input #input type="number" class="form-control" placeholder="값">
+  <div class="input-group-append">
+    <button class="btn btn-outline-primary" (click)="onInsert(input.value);input.value='';">삽입</button>
+  </div>
+  <button class="btn btn-outline-danger" (click)="clearAll.emit()">전체 삭제</button>
+  <button class="btn btn-outline-secondary" (click)="undo.emit()">undo</button>
+  <button class="btn btn-outline-secondary" (click)="redo.emit()">redo</button>
+</div>

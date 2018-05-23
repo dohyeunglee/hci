@@ -4,13 +4,7 @@
     <h1 class="title">HCI RBTree</h1>
   </a>
 </nav>
-<div class="input-group mb-3 toolbar">
-  <input #input type="number" class="form-control" placeholder="값">
-  <div class="input-group-append">
-    <button class="btn btn-outline-primary" (click)="insert(input.value);input.value='';">삽입</button>
-  </div>
-  <button class="btn btn-outline-danger" (click)="clearAll()">전체 삭제</button>
-</div>
+<toolbar (insert)="onInsert($event)" (clearAll)="onClearAll()" (undo)="onUndo()" (redo)="onRedo()"></toolbar>
 <property [violations]="rbTree.violations"></property>
 <div class="tree">
   <tree *ngIf="rbTree.root" [root]="rbTree.root"></tree>

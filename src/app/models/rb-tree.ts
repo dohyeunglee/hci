@@ -3,7 +3,9 @@ import { Node, createLeafNode, isNilNode } from './node';
 import { Color } from './color';
 
 export class RBTree {
+  past: Node[] = [];
   root: Node;
+  future: Node[] = [];
   violations: RBProperty[] = [];
 
   constructor() {
@@ -14,7 +16,24 @@ export class RBTree {
     this.root = null;
   }
 
+  redo() {
+    this.past.push(this.root && this.root.clone());
+    if (this.future.length !== 0) {
+      this.root = this.future.pop();
+    }
+    console.log(this.past, this.root, this.future);
+  }
+
+  undo() {
+    this.future.push(this.root && this.root.clone());
+    if (this.past.length !== 0) {
+      this.root = this.past.pop();
+    }
+    console.log(this.past, this.root, this.future);
+  }
+
   insertByAlgorithm(value: number) {
+    this.past.push(this.root && this.root.clone());
     const newNode = new Node(value);
     if (!this.root) {
       this.root = newNode;
@@ -40,6 +59,7 @@ export class RBTree {
       newNode.color = Color.RED;
       this.fixTree(newNode);
     }
+    console.log(this.past, this.root, this.future);
   }
 
   fixTree(node: Node) {
