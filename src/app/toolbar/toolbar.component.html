@@ -1,9 +1,21 @@
-<div class="input-group mb-3 toolbar">
-  <input #input type="number" class="form-control" placeholder="값">
-  <div class="input-group-append">
-    <button class="btn btn-outline-primary" (click)="onInsert(input.value);input.value='';">삽입</button>
+<div class="toolbar">
+  <div class="row">
+    <div class="col">
+      <div>
+        <input #input type="number" class="" placeholder="값">
+        <button class="insert btn btn-outline-primary" type="button" (click)="onInsert(input.value);input.value='';">삽입</button>
+      </div>
+    </div>
+    <div class="col extra">
+      <button class="btn btn-outline-danger" (click)="clearAll.emit()">
+        <img width="14px" height="14px" src="/assets/icons/trash.svg">
+      </button>
+      <button class="btn btn-outline-secondary" (click)="undo.emit()">
+        <img width="14px" height="14px" src="/assets/icons/action-undo.svg">
+      </button>
+      <button class="btn btn-outline-secondary" (click)="redo.emit()">
+        <img width="14px" height="14px" src="/assets/icons/action-redo.svg">
+      </button>
+    </div>
   </div>
-  <button class="btn btn-outline-danger" (click)="clearAll.emit()">전체 삭제</button>
-  <button class="btn btn-outline-secondary" (click)="undo.emit()">undo</button>
-  <button class="btn btn-outline-secondary" (click)="redo.emit()">redo</button>
 </div>

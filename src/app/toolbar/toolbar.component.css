@@ -1,4 +1,28 @@
 .toolbar {
-  margin: auto;
   width: 50%;
+  margin: auto;
+  margin-bottom: 40px;
+  position: relative;
+  left: 30px;
+}
+
+input {
+  height: 38px;
+  width: 60px;
+  position: relative;
+  margin-left: 50%;
+  border-top-left-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+  left: 1px;
+  border: 1px solid #cccccc;
+}
+
+.extra button {
+  margin-left: 1px;
+}
+
+.insert {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  position: absolute;
 }
