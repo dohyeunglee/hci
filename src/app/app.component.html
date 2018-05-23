@@ -6,6 +6,7 @@
   </div>
   <button class="btn btn-outline-danger" (click)="clearAll()">전체 삭제</button>
 </div>
+<property [violations]="rbTree.violations"></property>
 <div class="tree">
-  <tree [root]="rbTree.root"></tree>
+  <tree *ngIf="rbTree.root" [root]="rbTree.root"></tree>
 </div>

@@ -15,10 +15,10 @@ export interface Node {
 
 export interface RBTree {
   root: Node;
-  violations: RBTreeProperty[] | null;
+  violations: RBProperty[] | null;
 }
 
-export enum RBTreeProperty {
+export enum RBProperty {
   PROPERTY1 = '루트는 블랙이다',
   PROPERTY2 = '모든 리프는 블랙이다',
   PROPERTY3 = '노드가 레드이면 그 노드의 자식은 반드시 블랙이다',

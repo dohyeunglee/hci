@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let property of properties" [style.color]="violations.includes(property) ? 'red' : 'black'">
+    <b>{{ property }}</b>
+  </li>
+</ul>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RBTreeService } from './rb-tree.service';
-import { RBTree, Color } from './models';
+import { RBTree, Color, RBProperty } from './models';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +34,7 @@ export class AppComponent {
       },
       color: Color.BLACK
     },
-    violations: null
+    violations: [RBProperty.PROPERTY1]
   };
   constructor(private tree: RBTreeService) {}
 

@@ -7,9 +7,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { TreeComponent } from './tree/tree.component';
 import { ColorPipe } from './color.pipe';
+import { PropertyComponent } from './property/property.component';
 
 @NgModule({
-  declarations: [AppComponent, TreeComponent, ColorPipe],
+  declarations: [AppComponent, TreeComponent, ColorPipe, PropertyComponent],
   imports: [
     BrowserModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
