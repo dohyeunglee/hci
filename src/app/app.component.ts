@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RBTreeService } from './rb-tree.service';
 import { RBTree, Color, RBProperty } from './models';
 
 @Component({
@@ -8,38 +7,13 @@ import { RBTree, Color, RBProperty } from './models';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  rbTree: RBTree = {
-    root: {
-      id: '1',
-      value: 1,
-      children: {
-        left: {
-          id: '2',
-          value: 2,
-          children: {
-            left: {
-              value: 3,
-              id: '3',
-              children: {
-                left: null,
-                right: null
-              },
-              color: Color.RED
-            },
-            right: null
-          },
-          color: Color.RED
-        },
-        right: null
-      },
-      color: Color.BLACK
-    },
-    violations: [RBProperty.PROPERTY1]
-  };
-  constructor(private tree: RBTreeService) {}
+  rbTree: RBTree = new RBTree();
 
-  insert(value) {
-    this.rbTree = this.tree.insert(this.rbTree, value);
+  constructor() {}
+
+  insert(key: string) {
+    this.rbTree.insertByAlgorithm(Number.parseInt(key));
+    console.log(this.rbTree);
   }
 
   clearAll() {}

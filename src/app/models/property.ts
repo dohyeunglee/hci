@@ -1,23 +1,3 @@
-export enum Color {
-  RED,
-  BLACK
-}
-
-export interface Node {
-  id: string;
-  value: number;
-  children: {
-    left: Node;
-    right: Node;
-  };
-  color: Color;
-}
-
-export interface RBTree {
-  root: Node;
-  violations: RBProperty[] | null;
-}
-
 export enum RBProperty {
   PROPERTY1 = '루트는 블랙이다',
   PROPERTY2 = '모든 리프는 블랙이다',
