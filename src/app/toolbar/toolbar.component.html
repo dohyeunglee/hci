@@ -7,13 +7,22 @@
       </div>
     </div>
     <div class="col extra">
-      <button class="btn btn-outline-danger" (click)="clearAll.emit()">
+      <button class="btn btn-outline-danger"
+              (click)="clearAll.emit()"
+              placement="top"
+              ngbTooltip="전체삭제">
         <img width="14px" height="14px" src="/assets/icons/trash.svg">
       </button>
-      <button class="btn btn-outline-secondary" (click)="undo.emit()">
+      <button class="btn btn-outline-secondary"
+              (click)="undo.emit()"
+              placement="top"
+              ngbTooltip="되돌리기">
         <img width="14px" height="14px" src="/assets/icons/action-undo.svg">
       </button>
-      <button class="btn btn-outline-secondary" (click)="redo.emit()">
+      <button class="btn btn-outline-secondary"
+              (click)="redo.emit()"
+              placement="top"
+              ngbTooltip="되살리기">
         <img width="14px" height="14px" src="/assets/icons/action-redo.svg">
       </button>
     </div>
