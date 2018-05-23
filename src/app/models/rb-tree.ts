@@ -13,27 +13,33 @@ export class RBTree {
   }
 
   clearAll() {
+    this.prepareUndo();
     this.root = null;
   }
 
   redo() {
-    this.past.push(this.root && this.root.clone());
     if (this.future.length !== 0) {
+      this.past.push(this.root && this.root.clone());
       this.root = this.future.pop();
+      console.log(this.past, this.root, this.future);
     }
-    console.log(this.past, this.root, this.future);
   }
 
   undo() {
-    this.future.push(this.root && this.root.clone());
     if (this.past.length !== 0) {
+      this.future.push(this.root && this.root.clone());
       this.root = this.past.pop();
     }
     console.log(this.past, this.root, this.future);
   }
 
-  insertByAlgorithm(value: number) {
+  private prepareUndo() {
     this.past.push(this.root && this.root.clone());
+    console.log(this.past, this.root, this.future);
+  }
+
+  insertByAlgorithm(value: number) {
+    this.prepareUndo();
     const newNode = new Node(value);
     if (!this.root) {
       this.root = newNode;

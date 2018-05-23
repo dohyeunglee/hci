@@ -18,7 +18,7 @@ export class ToolbarComponent implements OnInit {
   onInsert(value: string) {
     const parsed = Number.parseInt(value);
     if (Number.isInteger(parsed)) {
-      this.insert.emit(Number.parseInt(value));
+      this.insert.emit(parsed);
     }
   }
 }

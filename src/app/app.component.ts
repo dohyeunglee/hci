@@ -26,6 +26,4 @@ export class AppComponent {
   onUndo() {
     this.rbTree.undo();
   }
-
-  clearAll() {}
 }

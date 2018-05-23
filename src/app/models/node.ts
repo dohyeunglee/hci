@@ -18,11 +18,11 @@ export class Node {
     this.right = null;
   }
 
-  clone(): Node {
+  clone(parent?: Node): Node {
     const cloned = new Node(this.value, this.color);
-    cloned.parent = this.parent && this.parent.clone();
-    cloned.left = this.left && this.left.clone();
-    cloned.right = this.right && this.right.clone();
+    cloned.parent = parent || (this.parent && this.parent.clone());
+    cloned.left = this.left && this.left.clone(cloned);
+    cloned.right = this.right && this.right.clone(cloned);
     return cloned;
   }
 }
