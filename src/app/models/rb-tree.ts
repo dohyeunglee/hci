@@ -10,6 +10,7 @@ export class RBTree {
 
   constructor() {
     this.root = null;
+    window['tree'] = this;
   }
 
   clearAll() {
@@ -23,6 +24,127 @@ export class RBTree {
       this.root = this.future.pop();
       console.log(this.past, this.root, this.future);
     }
+  }
+
+  findNode(id: number, value: number): Node {
+    let node = this.root;
+    while (node != null) {
+      if (value < node.value) {
+        node = node.left;
+      } else if (value > node.value) {
+        node = node.right;
+      } else if (value === node.value) {
+        if (id === node.id) {
+          return node;
+        } else {
+          node = node.right;
+        }
+      } else {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  removeByAlgorithm(id: number, value: number) {
+    const z = this.findNode(id, value);
+    if (z == null) {
+      return;
+    }
+    let x;
+    let y = z;
+    let yOriginalColor = y.color;
+    if (isNilNode(z.left)) {
+      x = z.right;
+      this.transplant(z, z.right);
+    } else if (isNilNode(z.right)) {
+      x = z.left;
+      this.transplant(z, z.left);
+    } else {
+      y = this.min(z.right);
+      yOriginalColor = y.color;
+      x = y.right;
+      if (y.parent === z) {
+        x.parent = y;
+      } else {
+        this.transplant(y, y.right);
+        y.right = z.right;
+        y.right.parent = y;
+      }
+      this.transplant(z, y);
+      y.left = z.left;
+      y.left.parent = y;
+      y.color = z.color;
+    }
+    if (yOriginalColor === Color.BLACK) {
+      this.removeFix(x);
+    }
+  }
+
+  removeFix(node: Node) {
+    while (node !== this.root && node.color === Color.BLACK) {
+      if (node === node.parent.left) {
+        let w = node.parent.right;
+        if (w.color === Color.RED) {
+          w.color = Color.BLACK;
+          node.parent.color = Color.RED;
+          this.rotateLeft(node.parent);
+          w = node.parent.right;
+        }
+        if (w.left.color === Color.BLACK && w.right.color === Color.BLACK) {
+          w.color = Color.RED;
+          node = node.parent;
+          continue;
+        } else if (w.right.color === Color.BLACK) {
+          w.left.color = Color.BLACK;
+          w.color = Color.RED;
+          w = node.parent.right;
+        }
+        if (w.right.color === Color.RED) {
+          w.color = node.parent.color;
+          node.parent.color = Color.BLACK;
+          w.right.color = Color.BLACK;
+          this.rotateLeft(node.parent);
+          node = this.root;
+        }
+      } else {
+        let w = node.parent.left;
+        if (w.color === Color.RED) {
+          w.color = Color.BLACK;
+          node.parent.color = Color.RED;
+          this.rotateRight(node.parent);
+          w = node.parent.left;
+        }
+        if (w.right.color === Color.BLACK && w.left.color === Color.BLACK) {
+          w.color = Color.RED;
+          node = node.parent;
+        } else if (w.left.color === Color.BLACK) {
+          w.right.color = Color.BLACK;
+          w.color = Color.RED;
+          this.rotateLeft(w);
+          w = node.parent.left;
+        }
+        if (w.left.color === Color.RED) {
+          w.color = node.parent.color;
+          node.parent.color = Color.BLACK;
+          w.left.color = Color.BLACK;
+          this.rotateRight(node.parent);
+          node = this.root;
+        }
+      }
+    }
+    node.color = Color.BLACK;
+  }
+
+  transplant(u: Node, v: Node) {
+    if (u.parent == null) {
+      this.root = v;
+    } else if (u === u.parent.left) {
+      u.parent.left = v;
+    } else {
+      u.parent.right = v;
+    }
+    v.parent = u.parent;
   }
 
   undo() {

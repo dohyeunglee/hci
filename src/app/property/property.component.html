@@ -1,6 +1,7 @@
 <div class="card border-secondary mb-3 center">
   <div class="card-header" style="text-align:center">
-    <b>레드블랙특성</b>
+    <b [style.color]="violations?.length !== 0 ? 'red' : 'black'">레드블랙특성</b>
+    <b *ngIf="violations?.length !== 0" style="color: red">(현재 트리가 아래의 특성을 위반하고 있습니다!)</b>
   </div>
   <div class="card-body text-secondary">
     <div class="card-text">

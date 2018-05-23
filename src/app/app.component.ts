@@ -9,7 +9,9 @@ import { RBTree, Color, RBProperty } from './models';
 export class AppComponent {
   rbTree: RBTree = new RBTree();
 
-  constructor() {}
+  constructor() {
+    this.rbTree.insertByAlgorithm(1);
+  }
 
   onInsert(value: number) {
     this.rbTree.insertByAlgorithm(value);

@@ -2,8 +2,6 @@ import {
   Component,
   OnInit,
   Input,
-  Output,
-  EventEmitter,
   AfterViewInit
 } from '@angular/core';
 import { Color, Node, isNilNode } from '../models';
@@ -15,6 +13,7 @@ import { Color, Node, isNilNode } from '../models';
 })
 export class TreeComponent implements OnInit, AfterViewInit {
   @Input() root: Node;
+  toolbarOpen = false;
   Color = Color;
   isNilNode = isNilNode;
 
