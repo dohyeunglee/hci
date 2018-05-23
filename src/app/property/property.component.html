@@ -1,5 +1,14 @@
-<ul>
-  <li *ngFor="let property of properties" [style.color]="violations.includes(property) ? 'red' : 'black'">
-    <b>{{ property }}</b>
-  </li>
-</ul>
+<div class="card border-secondary mb-3 center">
+  <div class="card-header" style="text-align:center">
+    <b>레드블랙특성</b>
+  </div>
+  <div class="card-body text-secondary">
+    <div class="card-text">
+      <ul>
+        <li *ngFor="let property of properties" [style.color]="violations.includes(property) ? 'red' : 'black'" [style.font-weight]="violations.includes(property) ? 'bold' : 'normal'">
+          {{ property }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

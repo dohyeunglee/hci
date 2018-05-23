@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Node, RBTree, RBTreeProperty, Color } from './models';
+import { Node, RBTree, RBProperty, Color } from './models';
 
 @Injectable({
   providedIn: 'root'
