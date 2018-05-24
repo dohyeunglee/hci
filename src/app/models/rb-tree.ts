@@ -26,6 +26,16 @@ export class RBTree {
     }
   }
 
+  min(node: Node): Node {
+    if (node == null || node === undefined) {
+      return {} as Node;
+    }
+    while (!isNilNode(node.left)) {
+      node = node.left;
+    }
+    return node;
+  }
+
   findNode(id: number, value: number): Node {
     let node = this.root;
     while (node != null) {
