@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Color } from '../models';
+import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'node',
@@ -9,11 +10,31 @@ import { Color } from '../models';
 export class NodeComponent implements OnInit {
   @Input() value: any;
   @Input() color: Color;
+  @ViewChild('p') popover: NgbPopover;
+  popoverOpen = false;
   Color = Color;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onClick() {
+    this.popoverOpen = !this.popoverOpen;
+    if (this.popoverOpen) {
+      this.popover.open();
+    } else {
+      this.popover.close();
+    }
+  }
+
+  onOutsideChange(event: boolean) {
+    this.popoverOpen = event;
+    if (this.popoverOpen) {
+      this.popover.open();
+    } else {
+      this.popover.close();
+    }
   }
 
 }

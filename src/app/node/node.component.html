@@ -1,10 +1,19 @@
-<div class="circle" [style.background]="color === Color.RED ? 'red' : 'black'" [ngbPopover]="popContent" popoverTitle="도구"
-  placement="right" #p="ngbPopover">
+<div class="circle"
+     [style.background]="color === Color.RED ? 'red' : 'black'"
+     [ngbPopover]="popContent"
+     popoverTitle="도구"
+     placement="right"
+     triggers="manual"
+     (click)="onClick()"
+     #p="ngbPopover">
   <b>{{ value || 'nil' }}</b>
 </div>
 
 <ng-template #popContent>
-  <div class="btn-group-vertical">
+  <div class="btn-group-vertical"
+       outsideClick
+       [outside]="popoverOpen"
+       (outsideChange)="onOutsideChange($event)">
     <button class="btn btn-outline-secondary">Button</button>
     <button class="btn btn-outline-secondary">Button</button>
     <button class="btn btn-outline-secondary">Button</button>
