@@ -13,3 +13,7 @@ b {
   position: relative;
   top: 3px;
 }
+
+.popover {
+  width: 175px;
+}

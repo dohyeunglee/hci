@@ -6,4 +6,9 @@
 </nav>
 <toolbar (insert)="onInsert($event)" (clearAll)="onClearAll()" (undo)="onUndo()" (redo)="onRedo()"></toolbar>
 <property [violations]="rbTree.violations"></property>
-<tree *ngIf="rbTree.root" [root]="rbTree.root"></tree>
+<tree *ngIf="rbTree.root"
+      [root]="rbTree.root"
+      (rotateLeft)="onRotateLeft($event)"
+      (rotateRight)="onRotateRight($event)"
+      (delete)="onDelete($event)"
+      (changeColor)="onChangeColor($event)"></tree>

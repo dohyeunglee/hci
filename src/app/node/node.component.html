@@ -1,7 +1,6 @@
 <div class="circle"
      [style.background]="color === Color.RED ? 'red' : 'black'"
-     [ngbPopover]="popContent"
-     popoverTitle="도구"
+     [ngbPopover]="value && popContent"
      placement="right"
      triggers="manual"
      (click)="onClick()"
@@ -10,13 +9,17 @@
 </div>
 
 <ng-template #popContent>
-  <div class="btn-group-vertical"
+  <div class="btn-group-vertical btn-group-sm"
        outsideClick
        [outside]="popoverOpen"
        (outsideChange)="onOutsideChange($event)">
-    <button class="btn btn-outline-secondary">Button</button>
-    <button class="btn btn-outline-secondary">Button</button>
-    <button class="btn btn-outline-secondary">Button</button>
-    <button class="btn btn-outline-secondary">Button</button>
+      <button class="btn btn-outline-secondary"
+              (click)="changeColor.emit()">색깔 변경</button>
+      <button class="btn btn-outline-secondary"
+              (click)="rotateLeft.emit()">회전 (좌)</button>
+      <button class="btn btn-outline-secondary"
+              (click)="rotateRight.emit()">회전 (우)</button>
+      <button class="btn btn-outline-secondary"
+              (click)="delete.emit()">삭제</button>
   </div>
 </ng-template>

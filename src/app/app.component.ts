@@ -28,4 +28,17 @@ export class AppComponent {
   onUndo() {
     this.rbTree.undo();
   }
+
+  onDelete(id: number) {
+    console.log(`Delete node ${id}`);
+  }
+  onChangeColor(id: number) {
+    console.log(`Change color of node ${id}`);
+  }
+  onRotateRight(id: number) {
+    console.log(`Rotate right node ${id}`);
+  }
+  onRotateLeft(id: number) {
+    console.log(`Rotate left node ${id}`);
+  }
 }

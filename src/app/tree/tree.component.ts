@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { Node, isNilNode, Color } from '../models';
 
 @Component({
@@ -8,6 +8,10 @@ import { Node, isNilNode, Color } from '../models';
 })
 export class TreeComponent implements OnInit, AfterViewInit {
   @Input() root: Node;
+  @Output() rotateLeft = new EventEmitter<number>();
+  @Output() rotateRight = new EventEmitter<number>();
+  @Output() delete = new EventEmitter<number>();
+  @Output() changeColor = new EventEmitter<number>();
   isNilNode = isNilNode;
   Color = Color;
 
