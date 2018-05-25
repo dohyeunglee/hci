@@ -18,6 +18,22 @@ export class RBTree {
     this.root = null;
   }
 
+  private violateRule1() {
+    return this.root.color === Color.RED;
+  }
+  private violateRule2() {}
+  private violateRule3() {}
+  private violateRule4() {}
+
+  checkViolations() {
+    return [
+      this.violateRule1() && RBProperty.PROPERTY1,
+      this.violateRule2() && RBProperty.PROPERTY2,
+      this.violateRule3() && RBProperty.PROPERTY3,
+      this.violateRule4() && RBProperty.PROPERTY4
+    ].filter(rule => rule);
+  }
+
   redo() {
     if (this.future.length !== 0) {
       this.past.push(this.root && this.root.clone());

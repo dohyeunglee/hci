@@ -1,0 +1,15 @@
+.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background: black;
+  text-align: center;
+  margin-left: 50%;
+  cursor: pointer;
+}
+
+b {
+  color: white;
+  position: relative;
+  top: 3px;
+}

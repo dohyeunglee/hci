@@ -1,10 +1,5 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  AfterViewInit
-} from '@angular/core';
-import { Color, Node, isNilNode } from '../models';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Node, isNilNode, Color } from '../models';
 
 @Component({
   selector: 'tree',
@@ -13,13 +8,12 @@ import { Color, Node, isNilNode } from '../models';
 })
 export class TreeComponent implements OnInit, AfterViewInit {
   @Input() root: Node;
-  toolbarOpen = false;
-  Color = Color;
   isNilNode = isNilNode;
+  Color = Color;
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   get left(): Node {
     return this.root && this.root.left;

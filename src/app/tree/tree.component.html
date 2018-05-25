@@ -1,8 +1,4 @@
-<div class="circle"
-     [style.background]="root?.color === Color.RED ? 'red' : 'black'"
-     (click)="toolbarOpen = !toolbarOpen">
-  <b>{{ root?.value }}</b>
-</div>
+<node [value]="root?.value" [color]="root?.color"></node>
 <div class="container">
   <div class="row">
     <div class="col">
@@ -14,7 +10,6 @@
   </div>
 </div>
 <ng-template #nil>
-  <div class="circle">
-    <b>nil</b>
-  </div>
+  <node [value]="null" [color]="Color.BLACK"></node>
 </ng-template>
+
