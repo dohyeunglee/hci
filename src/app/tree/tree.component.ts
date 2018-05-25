@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  AfterViewInit,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { Node, isNilNode, Color } from '../models';
 
 @Component({
@@ -17,7 +24,7 @@ export class TreeComponent implements OnInit, AfterViewInit {
 
   constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   get left(): Node {
     return this.root && this.root.left;
