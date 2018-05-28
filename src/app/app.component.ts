@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RBTree, Color, RBProperty } from './models';
+import { RBTree, Color, RBProperty, Node } from './models';
 
 @Component({
   selector: 'app-root',
@@ -32,8 +32,10 @@ export class AppComponent {
   onDelete(id: number) {
     console.log(`Delete node ${id}`);
   }
-  onChangeColor(id: number) {
-    console.log(`Change color of node ${id}`);
+  onChangeColor(node: Node) {
+    console.log(`Change color of node ${node.id}`);
+    node.color = node.color === Color.BLACK ? Color.RED : Color.BLACK
+    this.rbTree.violations = this.rbTree.checkViolations()
   }
   onRotateRight(id: number) {
     console.log(`Rotate right node ${id}`);

@@ -1,13 +1,19 @@
-<script src="tree.component.ts"></script>
-<node [value]="root?.value"
-      [color]="root?.color"
-      (rotateLeft)="rotateLeft.emit(root?.id)"
-      (rotateRight)="rotateRight.emit(root?.id)"
-      (changeColor)="changeColor.emit(root?.id)"
-      (delete)="delete.emit(root?.id)"></node>
-<div class="container">
-  <div class="row">
-    <div class="col">
+<div class="container" style="position: relative; z-index: 0;">
+  <svg height="100%" style="position: absolute; width: 100%; z-index: -1">
+    <line x1="50%" y1="15" x2="75%" y2="45" style="stroke:rgb(0,0,0); stroke-width: 2px;  z-index: 0"></line>
+    <line x1="50%" y1="15" x2="25%" y2="45" style="stroke:rgb(0,0,0); stroke-width: 2px;  z-index: 0"></line>
+  </svg>
+  <!--<div style="position: absolute; top: 0; left: 50%; width: 100px;"></div>-->
+  <node style="z-index: 1" [value]="root?.value"
+        [color]="root?.color"
+        (rotateLeft)="rotateLeft.emit(root)"
+        (rotateRight)="rotateRight.emit(root)"
+        (changeColor)="changeColor.emit(root)"
+        (delete)="delete.emit(root)"></node>
+  <!--<div class="row">-->
+  <div style="display: flex; justify-content: space-around; z-index: 1">
+    <!--<div class="col">-->
+    <div style="flex: 1 1 0; width: 0;">
       <tree *ngIf="!isNilNode(left) else nil"
             [root]="left"
             (rotateLeft)="rotateLeft.emit($event)"
@@ -15,7 +21,8 @@
             (delete)="delete.emit($event)"
             (changeColor)="changeColor.emit($event)"></tree>
     </div>
-    <div class="col">
+    <!--<div class="col">-->
+    <div style="flex: 1 1 0; width: 0;">
       <tree *ngIf="!isNilNode(right) else nil"
             [root]="right"
             (rotateLeft)="rotateLeft.emit($event)"

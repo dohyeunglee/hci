@@ -1,0 +1,63 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">도움말</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" [ngSwitch]="currentStage">
+    <ng-container *ngSwitchCase="1">
+      <div class="modal-body__left"></div>
+      <tree class="modal-body__right" [root]="rbTree.root"></tree>
+    </ng-container>
+    <ng-container *ngSwitchCase="2">
+      <div class="modal-body__left"></div>
+      <tree class="modal-body__right" [root]="rbTree.root"></tree>
+    </ng-container>
+    <ng-container *ngSwitchCase="3">
+      <div class="modal-body__left">
+        레드-블랙 트리는 이진 탐색 트리 중에서 스스로 균형을 맞추는 트리 중에 하나 입니다.
+        레드-블랙 트리는 복잡한 자료구조이지만, 실 사용에서 효율적이고, 최악의 경우에도 상당히 우수한 실행 시간을 보이기 때문에,
+        리눅스 커널의 CFS, C++의 map 자료구조 등 다양한 분야에서 쓰이고 있습니다.
+      </div>
+      <tree class="modal-body__right" [root]="rbTree.root"></tree>
+    </ng-container>
+    <ng-container *ngSwitchCase="4">
+      <div>
+        레드-블랙 트리에는 레드-블랙 특성이라는 4가지의 성질이 있습니다.
+        이제 각 성질들을 하나씩 알아봅시다.
+      </div>
+      <tree class="modal-body__right" [root]="rbTree.root"></tree>
+    </ng-container>
+    <ng-container *ngSwitchCase="5">
+      <div>
+        <h3>1. 루트는 블랙이다.</h3>
+      </div>
+      <tree class="modal-body__right" [root]="rbTree.root"></tree>
+    </ng-container>
+    <ng-container *ngSwitchCase="6">
+      <!--<div>-->
+        <!--<h3>2. 모든 리프는 블랙이다.</h3>-->
+      <!--</div>-->
+      <tree class="modal-body__right" *ngIf="rbTree.root" [root]="rbTree.root"></tree>
+    </ng-container>
+    <ng-container *ngSwitchCase="7">
+      <div>
+        <h3>3. 노드가 레드이면 그 노드의 자식은 반드시 블랙이다.</h3>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="8">
+      <div>
+        <h3>4. 루트 노드에서 임의의 리프 노드에 이르는 경로에서 만나는 블랙 노드의 수는 모두 같다.</h3>
+      </div>
+    </ng-container>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" (click)="prev()"> < </button>
+    {{currentStage}}
+    <button type="button" class="btn" (click)="next()"> > </button>
+    <button type="button" class="btn" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-primary" (click)="open(content)">설명 보기</button>

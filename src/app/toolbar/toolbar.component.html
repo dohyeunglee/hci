@@ -1,12 +1,12 @@
 <div class="toolbar">
-  <div class="row">
-    <div class="col">
+  <div style="display: flex; justify-content: space-around">
+    <div>
       <div>
-        <input #input type="number">
+        <input #input type="number" (keyup.enter)="onInsert(input.value);input.value='';">
         <button class="insert btn btn-outline-primary" type="button" (click)="onInsert(input.value);input.value='';">삽입</button>
       </div>
     </div>
-    <div class="col extra">
+    <div>
       <button class="btn btn-outline-danger"
               (click)="clearAll.emit()"
               placement="top"
@@ -25,6 +25,9 @@
               ngbTooltip="되살리기">
         <img width="14px" height="14px" src="/assets/icons/action-redo.svg">
       </button>
+    </div>
+    <div>
+      <modal style="position: relative; top: 0; right: 0;"></modal>
     </div>
   </div>
 </div>
