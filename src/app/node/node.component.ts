@@ -14,6 +14,7 @@ import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './node.component.html',
   styleUrls: ['./node.component.css']
 })
+
 export class NodeComponent implements OnInit {
   @Input() value: any;
   @Input() color: Color;

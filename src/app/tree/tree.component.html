@@ -1,31 +1,18 @@
 <script src="tree.component.ts"></script>
-<node [value]="root?.value"
-      [color]="root?.color"
-      (rotateLeft)="rotateLeft.emit(root?.id)"
-      (rotateRight)="rotateRight.emit(root?.id)"
-      (changeColor)="changeColor.emit(root?.id)"
-      (delete)="delete.emit(root?.id)"></node>
+<node [value]="root?.value" [color]="root?.color" (rotateLeft)="onRotateLeft()" (rotateRight)="onRotateRight()" (changeColor)="onChangeColor()"
+  (delete)="onDelete()"></node>
 <div class="container">
   <div class="row">
     <div class="col">
-      <tree *ngIf="!isNilNode(left) else nil"
-            [root]="left"
-            (rotateLeft)="rotateLeft.emit($event)"
-            (rotateRight)="rotateRight.emit($event)"
-            (delete)="delete.emit($event)"
-            (changeColor)="changeColor.emit($event)"></tree>
+      <tree *ngIf="!isNilNode(left) else nil" [root]="left" (rotateLeft)="rotateLeft.emit($event)" (rotateRight)="rotateRight.emit($event)"
+        (delete)="delete.emit($event)" (changeColor)="changeColor.emit($event)"></tree>
     </div>
     <div class="col">
-      <tree *ngIf="!isNilNode(right) else nil"
-            [root]="right"
-            (rotateLeft)="rotateLeft.emit($event)"
-            (rotateRight)="rotateRight.emit($event)"
-            (delete)="delete.emit($event)"
-            (changeColor)="changeColor.emit($event)"></tree>
+      <tree *ngIf="!isNilNode(right) else nil" [root]="right" (rotateLeft)="rotateLeft.emit($event)" (rotateRight)="rotateRight.emit($event)"
+        (delete)="delete.emit($event)" (changeColor)="changeColor.emit($event)"></tree>
     </div>
   </div>
 </div>
 <ng-template #nil>
   <node [value]="null" [color]="Color.BLACK"></node>
 </ng-template>
-

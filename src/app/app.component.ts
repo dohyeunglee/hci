@@ -29,16 +29,21 @@ export class AppComponent {
     this.rbTree.undo();
   }
 
-  onDelete(id: number) {
-    console.log(`Delete node ${id}`);
+  onDelete({ id, value }) {
+    console.log(`Delete node ${id}:${value}`);
+    this.rbTree.removeByAlgorithm(id, value);
   }
-  onChangeColor(id: number) {
-    console.log(`Change color of node ${id}`);
+
+  onChangeColor({ id, value }) {
+    console.log(`Change color of node ${id}:${value}`);
+    this.rbTree.changeColor(id, value);
   }
-  onRotateRight(id: number) {
-    console.log(`Rotate right node ${id}`);
+
+  onRotateRight({ id, value }) {
+    console.log(`Rotate right node ${id}:${value}`);
   }
-  onRotateLeft(id: number) {
-    console.log(`Rotate left node ${id}`);
+
+  onRotateLeft({ id, value }) {
+    console.log(`Rotate left node ${id}:${value}`);
   }
 }

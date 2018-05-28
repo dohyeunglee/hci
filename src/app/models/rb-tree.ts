@@ -18,15 +18,30 @@ export class RBTree {
     this.root = null;
   }
 
-  private violateRule1() {
+  private violateRule1(): boolean {
     return this.root.color === Color.RED;
   }
-  private violateRule2() {}
-  private violateRule3() {}
-  private violateRule4() {}
+  private violateRule2(): boolean {
+    return false;
+  }
+  private violateRule3(): boolean {
+    return false;
+  }
+  private violateRule4(): boolean {
+    return false;
+  }
+
+  changeColor(id: number, value: number) {
+    const target = this.findNode(id, value);
+    const color = target.color;
+    if (target) {
+      target.color = 1 - target.color;
+      this.checkViolations();
+    }
+  }
 
   checkViolations() {
-    return [
+    this.violations = [
       this.violateRule1() && RBProperty.PROPERTY1,
       this.violateRule2() && RBProperty.PROPERTY2,
       this.violateRule3() && RBProperty.PROPERTY3,
@@ -38,6 +53,7 @@ export class RBTree {
     if (this.future.length !== 0) {
       this.past.push(this.root && this.root.clone());
       this.root = this.future.pop();
+      this.checkViolations();
       console.log(this.past, this.root, this.future);
     }
   }
@@ -105,6 +121,7 @@ export class RBTree {
     if (yOriginalColor === Color.BLACK) {
       this.removeFix(x);
     }
+    this.checkViolations();
   }
 
   removeFix(node: Node) {
@@ -177,6 +194,7 @@ export class RBTree {
     if (this.past.length !== 0) {
       this.future.push(this.root && this.root.clone());
       this.root = this.past.pop();
+      this.checkViolations();
     }
     console.log(this.past, this.root, this.future);
   }
@@ -213,6 +231,7 @@ export class RBTree {
       newNode.color = Color.RED;
       this.fixTree(newNode);
     }
+    this.checkViolations();
     console.log(this.past, this.root, this.future);
   }
 
