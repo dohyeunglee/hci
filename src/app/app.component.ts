@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RBTree, Color, RBProperty } from './models';
+import { RBTree, Color, RBProperty, Node } from './models';
 
 @Component({
   selector: 'app-root',

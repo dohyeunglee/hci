@@ -4,14 +4,11 @@ import {
   Input,
   AfterViewInit,
   Output,
-  EventEmitter
+  EventEmitter,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 import { Node, isNilNode, Color } from '../models';
-
-export interface OperationInfo {
-  id: number;
-  value: number;
-}
 
 @Component({
   selector: 'tree',
@@ -20,10 +17,10 @@ export interface OperationInfo {
 })
 export class TreeComponent implements OnInit, AfterViewInit {
   @Input() root: Node;
-  @Output() rotateLeft = new EventEmitter<OperationInfo>();
-  @Output() rotateRight = new EventEmitter<OperationInfo>();
-  @Output() delete = new EventEmitter<OperationInfo>();
-  @Output() changeColor = new EventEmitter<OperationInfo>();
+  @Output() rotateLeft = new EventEmitter<Node>();
+  @Output() rotateRight = new EventEmitter<Node>();
+  @Output() delete = new EventEmitter<Node>();
+  @Output() changeColor = new EventEmitter<Node>();
   isNilNode = isNilNode;
   Color = Color;
 
@@ -37,22 +34,6 @@ export class TreeComponent implements OnInit, AfterViewInit {
 
   get right(): Node {
     return this.root && this.root.right;
-  }
-
-  onRotateRight() {
-    this.rotateRight.emit({ id: this.root.id, value: this.root.value });
-  }
-
-  onRotateLeft() {
-    this.rotateLeft.emit({ id: this.root.id, value: this.root.value });
-  }
-
-  onDelete() {
-    this.delete.emit({ id: this.root.id, value: this.root.value });
-  }
-
-  onChangeColor() {
-    this.changeColor.emit({ id: this.root.id, value: this.root.value });
   }
 
   ngAfterViewInit() {}

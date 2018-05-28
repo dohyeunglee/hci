@@ -12,6 +12,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { NodeComponent } from './node/node.component';
 import { OutsideClickDirective } from './outside-click.directive';
 import { IgnoreOutsideClickDirective } from './ignore-outside-click.directive';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +23,15 @@ import { IgnoreOutsideClickDirective } from './ignore-outside-click.directive';
     ToolbarComponent,
     NodeComponent,
     OutsideClickDirective,
-    IgnoreOutsideClickDirective
+    IgnoreOutsideClickDirective,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
     }),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

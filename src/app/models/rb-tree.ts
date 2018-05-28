@@ -6,11 +6,14 @@ export class RBTree {
   past: Node[] = [];
   root: Node;
   future: Node[] = [];
-  violations: RBProperty[] = [];
+  violations: (void | RBProperty)[] = [];
 
-  constructor() {
+  constructor(obj?) {
     this.root = null;
     window['tree'] = this;
+    if (Array.isArray(obj)) {
+      obj.forEach(v => this.insertByAlgorithm(v));
+    }
   }
 
   clearAll() {
@@ -21,23 +24,40 @@ export class RBTree {
   private violateRule1(): boolean {
     return this.root.color === Color.RED;
   }
+
   private violateRule2(): boolean {
     return false;
   }
-  private violateRule3(): boolean {
-    return false;
-  }
-  private violateRule4(): boolean {
-    return false;
+
+  private violateRule3(node = this.root): boolean {
+    if (!node) {
+      return false;
+    }
+    return (
+      this.violateRule3(node.left) ||
+      this.violateRule3(node.right) ||
+      (node.color === Color.RED &&
+        ((node.left && node.left.color === Color.RED) ||
+          (node.right && node.right.color === Color.RED)))
+    );
   }
 
-  changeColor(id: number, value: number) {
-    const target = this.findNode(id, value);
-    const color = target.color;
-    if (target) {
-      target.color = 1 - target.color;
-      this.checkViolations();
+  private getBlackNum(node: Node): number {
+    if (!node || node.value === null) {
+      return 0;
     }
+    const childNum = this.getBlackNum(node.left);
+    if (childNum !== this.getBlackNum(node.right)) {
+      console.log(node.value, node.color, childNum);
+      return -1;
+    } else {
+      console.log(node.value, node.color, childNum);
+      return childNum + (node.color === Color.BLACK ? 1 : 0);
+    }
+  }
+
+  private violateRule4(): boolean {
+    return this.getBlackNum(this.root) === -1;
   }
 
   checkViolations() {
@@ -47,6 +67,15 @@ export class RBTree {
       this.violateRule3() && RBProperty.PROPERTY3,
       this.violateRule4() && RBProperty.PROPERTY4
     ].filter(rule => rule);
+  }
+
+  changeColor(id: number, value: number) {
+    const target = this.findNode(id, value);
+    const color = target.color;
+    if (target) {
+      target.color = 1 - target.color;
+      this.checkViolations();
+    }
   }
 
   redo() {
