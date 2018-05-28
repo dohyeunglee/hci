@@ -14,6 +14,7 @@ export class AppComponent {
   }
 
   onInsert(value: number) {
+    this.rbTree.prepareUndo();
     this.rbTree.insertByAlgorithm(value);
   }
 
@@ -30,20 +31,18 @@ export class AppComponent {
   }
 
   onDelete({ id, value }) {
-    console.log(`Delete node ${id}:${value}`);
     this.rbTree.removeByAlgorithm(id, value);
   }
 
   onChangeColor({ id, value }) {
-    console.log(`Change color of node ${id}:${value}`);
-    this.rbTree.changeColor(id, value);
+    this.rbTree.changeColorByUser(id, value);
   }
 
   onRotateRight({ id, value }) {
-    console.log(`Rotate right node ${id}:${value}`);
+    this.rbTree.rotateRightByUser(id, value);
   }
 
   onRotateLeft({ id, value }) {
-    console.log(`Rotate left node ${id}:${value}`);
+    this.rbTree.rotateLeftByUser(id, value);
   }
 }

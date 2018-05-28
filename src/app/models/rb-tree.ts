@@ -2,23 +2,36 @@ import { RBProperty } from './property';
 import { Node, createLeafNode, isNilNode } from './node';
 import { Color } from './color';
 
+window['trees'] = [];
+
 export class RBTree {
   past: Node[] = [];
   root: Node;
   future: Node[] = [];
-  violations: (void | RBProperty)[] = [];
+  violations: RBProperty[] = [];
 
   constructor(obj?) {
     this.root = null;
-    window['tree'] = this;
+    window['trees'].push(this);
     if (Array.isArray(obj)) {
       obj.forEach(v => this.insertByAlgorithm(v));
+    }
+  }
+
+  changeColorByUser(id, value) {
+    const target = this.findNode(id, value);
+    const color = target.color;
+    if (target) {
+      this.prepareUndo();
+      target.color = 1 - target.color;
+      this.checkViolations();
     }
   }
 
   clearAll() {
     this.prepareUndo();
     this.root = null;
+    this.checkViolations();
   }
 
   private violateRule1(): boolean {
@@ -48,10 +61,8 @@ export class RBTree {
     }
     const childNum = this.getBlackNum(node.left);
     if (childNum !== this.getBlackNum(node.right)) {
-      console.log(node.value, node.color, childNum);
       return -1;
     } else {
-      console.log(node.value, node.color, childNum);
       return childNum + (node.color === Color.BLACK ? 1 : 0);
     }
   }
@@ -69,11 +80,20 @@ export class RBTree {
     ].filter(rule => rule);
   }
 
-  changeColor(id: number, value: number) {
+  rotateRightByUser(id: number, value: number) {
     const target = this.findNode(id, value);
-    const color = target.color;
     if (target) {
-      target.color = 1 - target.color;
+      this.prepareUndo();
+      this.rotateRight(target);
+      this.checkViolations();
+    }
+  }
+
+  rotateLeftByUser(id: number, value: number) {
+    const target = this.findNode(id, value);
+    if (target) {
+      this.prepareUndo();
+      this.rotateLeft(target);
       this.checkViolations();
     }
   }
@@ -122,6 +142,7 @@ export class RBTree {
     if (z == null) {
       return;
     }
+    this.prepareUndo();
     let x;
     let y = z;
     let yOriginalColor = y.color;
@@ -228,13 +249,13 @@ export class RBTree {
     console.log(this.past, this.root, this.future);
   }
 
-  private prepareUndo() {
+  prepareUndo() {
     this.past.push(this.root && this.root.clone());
+    this.future = [];
     console.log(this.past, this.root, this.future);
   }
 
   insertByAlgorithm(value: number) {
-    this.prepareUndo();
     const newNode = new Node(value);
     if (!this.root) {
       this.root = newNode;
@@ -305,54 +326,61 @@ export class RBTree {
     this.root.color = Color.BLACK;
   }
 
-  rotateLeft(node: Node) {
-    const y = node.right;
-    if (isNilNode(y.left)) {
-      node.right = createLeafNode(node);
-    } else {
-      node.right = y.left;
-    }
+  private checkIfChildrenNil(node: Node) {
+    return isNilNode(node) || (isNilNode(node.left) && isNilNode(node.right));
+  }
 
-    if (!isNilNode(y.left)) {
-      y.left.parent = node;
-    }
-    y.parent = node.parent;
-    if (isNilNode(node.parent)) {
-      this.root = y;
-    } else {
-      if (node === node.parent.left) {
-        node.parent.left = y;
+  rotateLeft(node: Node) {
+    if (!this.checkIfChildrenNil(node)) {
+      const y = node.right;
+      if (isNilNode(y.left)) {
+        node.right = createLeafNode(node);
       } else {
-        node.parent.right = y;
+        node.right = y.left;
       }
+
+      if (!isNilNode(y.left)) {
+        y.left.parent = node;
+      }
+      y.parent = node.parent;
+      if (isNilNode(node.parent)) {
+        this.root = y;
+      } else {
+        if (node === node.parent.left) {
+          node.parent.left = y;
+        } else {
+          node.parent.right = y;
+        }
+      }
+      y.left = node;
+      node.parent = y;
     }
-    y.left = node;
-    node.parent = y;
   }
 
   rotateRight(node: Node) {
-    const y = node.left;
-
-    if (isNilNode(y.right)) {
-      node.left = createLeafNode(node);
-    } else {
-      node.left = y.right;
-    }
-
-    if (!isNilNode(y.right)) {
-      y.right.parent = node;
-    }
-    y.parent = node.parent;
-    if (isNilNode(node.parent)) {
-      this.root = y;
-    } else {
-      if (node === node.parent.right) {
-        node.parent.right = y;
+    if (!this.checkIfChildrenNil(node)) {
+      const y = node.left;
+      if (isNilNode(y.right)) {
+        node.left = createLeafNode(node);
       } else {
-        node.parent.left = y;
+        node.left = y.right;
       }
+
+      if (!isNilNode(y.right)) {
+        y.right.parent = node;
+      }
+      y.parent = node.parent;
+      if (isNilNode(node.parent)) {
+        this.root = y;
+      } else {
+        if (node === node.parent.right) {
+          node.parent.right = y;
+        } else {
+          node.parent.left = y;
+        }
+      }
+      y.right = node;
+      node.parent = y;
     }
-    y.right = node;
-    node.parent = y;
   }
 }
