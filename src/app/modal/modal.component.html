@@ -7,48 +7,135 @@
   </div>
   <div class="modal-body" [ngSwitch]="currentStage">
     <ng-container *ngSwitchCase="1">
-      <div class="modal-body__left"></div>
-      <tree class="modal-body__right" [root]="rbTree.root"></tree>
-    </ng-container>
-    <ng-container *ngSwitchCase="2">
-      <div class="modal-body__left"></div>
-      <tree class="modal-body__right" [root]="rbTree.root"></tree>
-    </ng-container>
-    <ng-container *ngSwitchCase="3">
       <div class="modal-body__left">
         레드-블랙 트리는 이진 탐색 트리 중에서 스스로 균형을 맞추는 트리 중에 하나 입니다.
         레드-블랙 트리는 복잡한 자료구조이지만, 실 사용에서 효율적이고, 최악의 경우에도 상당히 우수한 실행 시간을 보이기 때문에,
-        리눅스 커널의 CFS, C++의 map 자료구조 등 다양한 분야에서 쓰이고 있습니다.
+        리눅스 커널의 CFS, C++의 map 자료구조 등 다양한 분야에서 쓰이고 있습니다. <br/>
       </div>
       <tree class="modal-body__right" [root]="rbTree.root"></tree>
     </ng-container>
-    <ng-container *ngSwitchCase="4">
+    <ng-container *ngSwitchCase="2">
       <div>
-        레드-블랙 트리에는 레드-블랙 특성이라는 4가지의 성질이 있습니다.
+        레드-블랙 트리는 이름에 알맞게 각 노드에 빨간색과 검은색을 칠할 수 있는데,
+        이를 통해서 균형이 맞춰진답니다.
+        레드-블랙 트리가 올바로 유지되기 위해서는 레드-블랙 특성이라는 4가지의 성질이 있습니다.
         이제 각 성질들을 하나씩 알아봅시다.
       </div>
       <tree class="modal-body__right" [root]="rbTree.root"></tree>
     </ng-container>
-    <ng-container *ngSwitchCase="5">
+    <ng-container *ngSwitchCase="3">
       <div>
         <h3>1. 루트는 블랙이다.</h3>
+        레드-블랙 트리의 루트 노드는 항상 검은색이어야 합니다.
       </div>
-      <tree class="modal-body__right" [root]="rbTree.root"></tree>
+      <div *ngIf="rbTree1.root.color === Color.RED">
+        아래 트리에서 루트 노드를 선택한 뒤에 색상 변경을 통해서 루트 노드의 색을 검은색으로 바꾸어 봅시다.
+      </div>
+      <div *ngIf="rbTree1.root.color === Color.BLACK">
+        잘했어요!
+      </div>
+      <!--<div style="display: flex">-->
+        <!--<div>-->
+          <!--<img src="/assets/images/property1.png">-->
+          <!--1번 특성 만족-->
+        <!--</div>-->
+        <!--<div>-->
+          <!--<img src="/assets/images/property1_.png" style="width: 100%">-->
+          <!--1번 특성 불만족-->
+        <!--</div>-->
+      <!--</div>-->
+      <tree *ngIf="rbTree1.root" [root]="rbTree1.root" (changeColor)="$event.value === 2 ? rbTree1.root.color = Color.BLACK : 0;"></tree>
+    </ng-container>
+    <ng-container *ngSwitchCase="4">
+      <div>
+        <h3>2. 모든 리프는 블랙이다.</h3>
+        레드-블랙 트리에서 모든 리프 노드는 항상 검은색이어야 합니다.
+        레드-블랙 트리에서는 보통 NIL로 리프 노드를 나타내기 때문에,
+        이 조건을 해치는 경우는 없다고 생각해도 됩니다.
+      </div>
+      <tree *ngIf="rbTree1.root" [root]="rbTree1.root"></tree>
+    </ng-container>
+    <ng-container *ngSwitchCase="5">
+      <div>
+        <h3>3. 노드가 레드이면 그 노드의 자식은 반드시 블랙이다.</h3>
+        레드-블랙 트리에서 부모 노드의 색이 빨간색이었다면,
+        자식 노드는 반드시 검은색이어야 합니다.
+      </div>
+      <div *ngIf="rbTree3.root.right.right.color === Color.RED">
+        아래 3번 특성을 어긴 자식 노드를 찾아서 색상 변경을 통해 바로잡아 줍시다.
+      </div>
+      <div *ngIf="rbTree3.root.right.right.color === Color.BLACK">
+        잘했어요!
+      </div>
+      <tree *ngIf="rbTree3.root" [root]="rbTree3.root" (changeColor)="$event.value === 6 ? $event.color = Color.BLACK : 0;"></tree>
     </ng-container>
     <ng-container *ngSwitchCase="6">
-      <!--<div>-->
-        <!--<h3>2. 모든 리프는 블랙이다.</h3>-->
-      <!--</div>-->
-      <tree class="modal-body__right" *ngIf="rbTree.root" [root]="rbTree.root"></tree>
+      <div>
+        <h4>4. 루트 노드에서 임의의 리프 노드에 이르는 경로에서 만나는 블랙 노드의 수는 모두 같다.</h4>
+        레드-블랙 트리에서 루트 노드에서 각 리프 노드까지 나아가는 동안 그 사이에 있는 검은색 노드의 개수는
+        모든 리프 노드에서 동일해야 하는 조건입니다.
+      </div>
+      <div *ngIf="rbTree3.root.right.right.right.color === Color.BLACK || rbTree3.root.right.right.left.color === Color.BLACK">
+        아래 3번 특성을 어긴 자식 노드를 찾아서 색상 변경을 통해 바로잡아 줍시다.
+      </div>
+      <div *ngIf="rbTree3.root.right.right.right.color === Color.RED && rbTree3.root.right.right.left.color === Color.RED">
+        잘했어요!
+      </div>
+      <tree *ngIf="rbTree3.root" [root]="rbTree3.root" (changeColor)="$event.value === 5 || $event.value === 7 ? $event.color = Color.RED : 0;"></tree>
     </ng-container>
     <ng-container *ngSwitchCase="7">
       <div>
-        <h3>3. 노드가 레드이면 그 노드의 자식은 반드시 블랙이다.</h3>
+        이제 이 조건을 만족하기 위해서 레드-블랙 트리에서 노드의 삽입 과정과 삭제 과정이
+        어떻게 일어나는지 한 단계씩 확인해봅시다.
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="8">
       <div>
-        <h3>4. 루트 노드에서 임의의 리프 노드에 이르는 경로에서 만나는 블랙 노드의 수는 모두 같다.</h3>
+        레드-블랙 트리의 삽입 과정은 먼저 일반적인 이진 탐색 트리랑 유사하게 진행됩니다.
+        삽입할 노드의 색을 빨간색으로 두고, 루트 노드 부터 시작해서 삽입할 노드의 값이 더 크다면 오른쪽으로,
+        삽입할 노드의 값이 더 작다면 왼쪽 노드로 진행되면서 자신의 자리를 찾게 됩니다.
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="9">
+      <div>
+        이진 탐색 트리와 유사한 삽입이 이루어 진 뒤에는 삽입된 노드의 부모 노드의 색을 확인해야 합니다.
+        삽입된 노드의 색을 빨간색으로 두었으니, 부모 노드의 색이 검은색이라면 레드-블랙 특성을 모두 만족하겠지만,
+        만약 부모 노드의 색이 빨간색이라면 레드-블랙 특성을 위반하게 되겠죠.
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="10">
+      <div>
+        이 때, 위반된 레드-블랙 특성을 되돌리기 위한 작업이 시작됩니다.
+        여기에는 두 종류가 있는데, 하나는 다시 색칠하기 (recoloring)이고
+        다른 하나는 재건축하기 (reconstructing)입니다.
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="11">
+      <div>
+        이 때, 위반된 레드-블랙 특성을 되돌리기 위한 작업이 시작됩니다.
+        여기에는 두 종류가 있는데, 하나는 다시 색칠하기 (recoloring)이고
+        다른 하나는 재건축하기 (reconstructing)입니다.
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="12">
+      <div>
+        이 때, 위반된 레드-블랙 특성을 되돌리기 위한 작업이 시작됩니다.
+        여기에는 두 종류가 있는데, 하나는 다시 색칠하기 (recoloring)이고
+        다른 하나는 재건축하기 (reconstructing)입니다.
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="13">
+      <div>
+        이 때, 위반된 레드-블랙 특성을 되돌리기 위한 작업이 시작됩니다.
+        여기에는 두 종류가 있는데, 하나는 다시 색칠하기 (recoloring)이고
+        다른 하나는 재건축하기 (reconstructing)입니다.
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="14">
+      <div>
+        이 때, 위반된 레드-블랙 특성을 되돌리기 위한 작업이 시작됩니다.
+        여기에는 두 종류가 있는데, 하나는 다시 색칠하기 (recoloring)이고
+        다른 하나는 재건축하기 (reconstructing)입니다.
       </div>
     </ng-container>
   </div>
