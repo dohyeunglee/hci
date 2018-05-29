@@ -44,7 +44,8 @@
           <!--1번 특성 불만족-->
         <!--</div>-->
       <!--</div>-->
-      <tree *ngIf="rbTree1.root" [root]="rbTree1.root" (changeColor)="$event.value === 2 ? rbTree1.root.color = Color.BLACK : 0;"></tree>
+      <tree *ngIf="rbTree1.root" [root]="rbTree1.root"
+            (changeColor)="$event.value === 2 ? rbTree1.root.color = Color.BLACK : 0;"></tree>
     </ng-container>
     <ng-container *ngSwitchCase="4">
       <div>
@@ -53,7 +54,7 @@
         레드-블랙 트리에서는 보통 NIL로 리프 노드를 나타내기 때문에,
         이 조건을 해치는 경우는 없다고 생각해도 됩니다.
       </div>
-      <tree *ngIf="rbTree1.root" [root]="rbTree1.root"></tree>
+      <tree *ngIf="rbTree2.root" [root]="rbTree2.root"></tree>
     </ng-container>
     <ng-container *ngSwitchCase="5">
       <div>

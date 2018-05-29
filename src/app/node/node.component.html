@@ -1,6 +1,6 @@
 <div class="circle" [style.background]="color === Color.RED ? 'red' : 'black'" [style.cursor]="value !== null ? 'pointer' : 'auto'"
-  [ngbPopover]="value && popContent" placement="top" triggers="manual" (click)="onClick()" #p="ngbPopover">
-  <b>{{ value || 'nil' }}</b>
+  [ngbPopover]="value !== null && popContent" placement="top" triggers="manual" (click)="onClick()" #p="ngbPopover">
+  <b>{{ value !== null ? value : 'nil' }}</b>
 </div>
 
 <ng-template #popContent>
