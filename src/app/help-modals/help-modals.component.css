@@ -11,3 +11,11 @@
 .red {
   color: var(--main-red);
 }
+
+
+.modal__image {
+  margin: 10px 0;
+  border-radius: var(--main-border-radius);
+  max-width: 100%;
+  background-color: var(--main-white);
+}

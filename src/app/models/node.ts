@@ -35,11 +35,11 @@ export class Node {
   }
 
   setValue(value: number) {
-    this.value = value
-    this.left = new Node(null)
-    this.left.parent = this
-    this.right = new Node(null)
-    this.right.parent = this
+    this.value = value;
+    this.left = new Node(null);
+    this.left.parent = this;
+    this.right = new Node(null);
+    this.right.parent = this;
   }
 }
 

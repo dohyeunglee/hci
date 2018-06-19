@@ -1,5 +1,5 @@
-<div class="property">
-  <div class="property__header">
+<div class="property" [class.__invisible]="toggleView">
+  <div class="property__header" (click)="toggleView = !toggleView">
     레드 블랙 특성
   </div>
   <div class="property__body">

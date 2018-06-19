@@ -47,7 +47,7 @@ import { PanelComponent } from './panel/panel.component';
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
     }),
-    NgbModule.forRoot(),
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

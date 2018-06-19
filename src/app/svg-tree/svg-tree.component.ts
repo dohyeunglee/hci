@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: '[svg-tree]',
@@ -6,12 +6,11 @@ import { Component, Input, OnInit } from '@angular/core'
   styleUrls: ['./svg-tree.component.css']
 })
 export class SvgTreeComponent implements OnInit {
-  @Input() node: Node
+  @Input() node: Node;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.node.nodeValue = '3'
+    this.node.nodeValue = '3';
   }
-
 }

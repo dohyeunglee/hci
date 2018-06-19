@@ -1,6 +1,6 @@
-<div class="panel">
-  <button class="panel__btn" (click)="undoEmit.emit({})">↶</button>
-  <button class="panel__btn" (click)="redoEmit.emit({})">↷</button>
-  <button class="panel__btn" (click)="refreshEmit.emit({})">⥀</button>
-  <button class="panel__btn" (click)="helpEmit.emit({})">?</button>
+<div class="panel" (click)="toggleView = !toggleView" [class.__invisible]="toggleView">
+  <button class="panel__btn" (click)="undoEmit.emit({}) || $event.stopPropagation()">↶</button>
+  <button class="panel__btn" (click)="redoEmit.emit({}) || $event.stopPropagation()">↷</button>
+  <button class="panel__btn" (click)="refreshEmit.emit({}) || $event.stopPropagation()">⥀</button>
+  <button class="panel__btn" (click)="helpEmit.emit({}) || $event.stopPropagation()">?</button>
 </div>

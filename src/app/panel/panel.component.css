@@ -8,6 +8,11 @@
   border-radius: 0 var(--main-border-radius) var(--main-border-radius) 0;
   color: var(--main-white);
   box-shadow: 0 0 2px 1px var(--main-black);
+  transition: left 1s;
+}
+
+.panel.__invisible {
+  left: -200px;
 }
 
 .panel__btn {
@@ -21,5 +26,5 @@
 }
 
 .panel__btn + .panel__btn {
-  border-left: 1px solid var(--main-white);
+  border-left: 1px solid var(--main-coal);
 }

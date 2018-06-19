@@ -1,3 +1,5 @@
 #mini-board {
+  margin: 5px auto;
   background-color: var(--main-white);
+  border-radius: var(--main-border-radius);
 }

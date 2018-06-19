@@ -1,7 +1,7 @@
 import { RBProperty } from './property';
-import { Node, createLeafNode, isNilNode, createNode } from "./node";
+import { Node, createLeafNode, isNilNode, createNode } from './node';
 import { Color } from './color';
-import { P } from "@angular/core/src/render3";
+import { P } from '@angular/core/src/render3';
 
 window['trees'] = [];
 
@@ -31,11 +31,11 @@ export class RBTree {
 
   locate(node: Node = this.root, value: number) {
     if (node.value === value || node.value === null) {
-      return node
+      return node;
     } else if (node.value < value) {
-      return this.locate(node.right, value)
+      return this.locate(node.right, value);
     } else {
-      return this.locate(node.left, value)
+      return this.locate(node.left, value);
     }
   }
 
@@ -368,63 +368,62 @@ export class RBTree {
 
   rotateLeft2(node: Node) {
     if (isNilNode(node.right)) {
-      return
+      return;
     }
-    const right = node.right
+    const right = node.right;
     if (!node.parent) {
-      this.root = right
+      this.root = right;
     } else if (node.parent.right === node) {
-      node.parent.right = right
+      node.parent.right = right;
     } else if (node.parent.left === node) {
-      node.parent.left = right
+      node.parent.left = right;
     }
-    node.right = right.left
-    right.parent = node.parent
-    node.parent = right
-    node.parent.left = node
+    node.right = right.left;
+    right.parent = node.parent;
+    node.parent = right;
+    node.parent.left = node;
 
     /* LINE BINDING */
     if (right.parent) {
-      if (right.parent.value < right.value)
-        right.parentLine = right.parent.leftLine
-      else
-        right.parentLine = right.parent.rightLine
+      if (right.parent.value > right.value)
+        right.parentLine = right.parent.leftLine;
+      else right.parentLine = right.parent.rightLine;
     } else {
-      right.parentLine = null
+      right.parentLine = null;
     }
-    node.right.parentLine = node.rightLine
-    node.parentLine = right.leftLine
+    // if (right.parent) right.parentLine = right.parent.leftLine;
+    node.right.parentLine = node.rightLine;
+    node.parentLine = right.leftLine;
   }
 
   rotateRight2(node: Node) {
     if (isNilNode(node.left)) {
-      return
+      return;
     }
-    const left = node.left
+    const left = node.left;
     if (!node.parent) {
-      this.root = left
+      this.root = left;
     } else if (node.parent.right === node) {
-      node.parent.right = left
+      node.parent.right = left;
     } else if (node.parent.left === node) {
-      node.parent.left = left
+      node.parent.left = left;
     }
-    node.left = left.right
-    left.parent = node.parent
-    node.parent = left
-    node.parent.right = node
+    node.left = left.right;
+    left.parent = node.parent;
+    node.parent = left;
+    node.parent.right = node;
 
     /* LINE BINDING */
     if (left.parent) {
       if (left.parent.value < left.value)
-        left.parentLine = left.parent.rightLine
-      else
-        left.parentLine = left.parent.leftLine
+        left.parentLine = left.parent.rightLine;
+      else left.parentLine = left.parent.leftLine;
     } else {
-      left.parentLine = null
+      left.parentLine = null;
     }
-    if (left.parent) left.parentLine = left.parent.rightLine
-    node.left.parentLine = node.leftLine
-    node.parentLine = left.rightLine
+    // if (left.parent) left.parentLine = left.parent.rightLine;
+    node.left.parentLine = node.leftLine;
+    node.parentLine = left.rightLine;
   }
 
   rotateRight(node: Node) {
@@ -458,103 +457,103 @@ export class RBTree {
     if (isNilNode(node.left) && isNilNode(node.right)) {
       if (node.parent) {
         if (node.parent.right === node) {
-          node.parent.right = node.right
-          node.right = null
-          node.parent.right.parentLine = node.parentLine
-          node.parent.right.parent = node.parent
+          node.parent.right = node.right;
+          node.right = null;
+          node.parent.right.parentLine = node.parentLine;
+          node.parent.right.parent = node.parent;
         } else {
-          node.parent.left = node.left
-          node.left = null
-          node.parent.left.parentLine = node.parentLine
-          node.parent.left.parent = node.parent
+          node.parent.left = node.left;
+          node.left = null;
+          node.parent.left.parentLine = node.parentLine;
+          node.parent.left.parent = node.parent;
         }
       }
     } else if (!isNilNode(node.left) && isNilNode(node.right)) {
       if (!node.parent) {
-        this.root = node.left
-        this.root.parentLine = null
-        this.root.parent = null
+        this.root = node.left;
+        this.root.parentLine = null;
+        this.root.parent = null;
       } else if (node.parent.right === node) {
-        node.parent.right = node.left
-        node.parent.right.parentLine = node.parentLine
-        node.parent.right.parent = node.parent
+        node.parent.right = node.left;
+        node.parent.right.parentLine = node.parentLine;
+        node.parent.right.parent = node.parent;
       } else {
-        node.parent.left = node.left
-        node.parent.left.parentLine = node.parentLine
-        node.parent.left.parent = node.parent
+        node.parent.left = node.left;
+        node.parent.left.parentLine = node.parentLine;
+        node.parent.left.parent = node.parent;
       }
-      node.left = null
+      node.left = null;
     } else if (!isNilNode(node.right) && isNilNode(node.left)) {
       if (!node.parent) {
-        this.root = node.right
-        this.root.parentLine = null
-        this.root.parent = null
+        this.root = node.right;
+        this.root.parentLine = null;
+        this.root.parent = null;
       } else if (node.parent.left === node) {
-        node.parent.left = node.right
-        node.parent.left.parentLine = node.parentLine
-        node.parent.left.parent = node.parent
+        node.parent.left = node.right;
+        node.parent.left.parentLine = node.parentLine;
+        node.parent.left.parent = node.parent;
       } else {
-        node.parent.right = node.right
-        node.parent.right.parentLine = node.parentLine
-        node.parent.right.parent = node.parent
+        node.parent.right = node.right;
+        node.parent.right.parentLine = node.parentLine;
+        node.parent.right.parent = node.parent;
       }
-      node.right = null
+      node.right = null;
     } else if (!isNilNode(node.right) && !isNilNode(node.left)) {
-      let replacer = node.left
+      let replacer = node.left;
       while (!isNilNode(replacer.right)) {
-        replacer = replacer.right
+        replacer = replacer.right;
       }
       if (replacer === node.left) {
         if (!node.parent) {
-          this.root = replacer
+          this.root = replacer;
         } else {
           if (node.parent.right === node) {
-            node.parent.right = replacer
+            node.parent.right = replacer;
           } else {
-            node.parent.left = replacer
+            node.parent.left = replacer;
           }
         }
-        replacer.parent = node.parent
-        replacer.parentLine = node.parentLine
-        const right = replacer.right
-        const rightLine = replacer.rightLine
-        replacer.right = node.right
-        replacer.rightLine = node.rightLine
-        replacer.right.parent = replacer
-        replacer.right.parentLine = replacer.rightLine
-        node.left = null
-        node.right = right
-        node.rightLine = rightLine
+        replacer.parent = node.parent;
+        replacer.parentLine = node.parentLine;
+        const right = replacer.right;
+        const rightLine = replacer.rightLine;
+        replacer.right = node.right;
+        replacer.rightLine = node.rightLine;
+        replacer.right.parent = replacer;
+        replacer.right.parentLine = replacer.rightLine;
+        node.left = null;
+        node.right = right;
+        node.rightLine = rightLine;
       } else {
         if (!node.parent) {
-          this.root = replacer
+          this.root = replacer;
         } else {
           if (node.parent.right === node) {
-            node.parent.right = replacer
+            node.parent.right = replacer;
           } else {
-            node.parent.left = replacer
+            node.parent.left = replacer;
           }
         }
-        replacer.parent.right = replacer.left
-        replacer.left.parent = replacer.parent
-        replacer.left.parentLine = replacer.parentLine
-        replacer.parent = node.parent
-        replacer.parentLine = node.parentLine
-        const right = replacer.right
-        const rightLine = replacer.rightLine
-        const leftLine = replacer.leftLine
-        replacer.left = node.left
-        replacer.leftLine = node.leftLine
-        replacer.left.parent = replacer
-        replacer.left.parentLine = replacer.leftLine
-        replacer.right = node.right
-        replacer.rightLine = node.rightLine
-        replacer.right.parent = replacer
-        replacer.right.parentLine = replacer.rightLine
-        node.left = null
-        node.right = right
-        node.rightLine = rightLine
-        node.leftLine = leftLine
+        replacer.parent.right = replacer.left;
+        replacer.left.parent = replacer.parent;
+        replacer.left.parentLine = replacer.parentLine;
+        replacer.parent = node.parent;
+        replacer.parentLine = node.parentLine;
+        const right = replacer.right;
+        const rightLine = replacer.rightLine;
+        const leftLine = replacer.leftLine;
+        replacer.left = node.left;
+        replacer.leftLine = node.leftLine;
+        replacer.left.parent = replacer;
+        replacer.left.parentLine = replacer.leftLine;
+        replacer.right = node.right;
+        replacer.rightLine = node.rightLine;
+        replacer.right.parent = replacer;
+        replacer.right.parentLine = replacer.rightLine;
+        node.left = null;
+        node.right = right;
+        node.rightLine = rightLine;
+        node.leftLine = leftLine;
       }
     }
   }

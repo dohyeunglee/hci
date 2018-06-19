@@ -8,7 +8,7 @@ import { RBTree, Color, RBProperty, Node } from './models';
 })
 export class AppComponent {
   rbTree: RBTree = new RBTree();
-  isHelpModalOpen: boolean = false
+  isHelpModalOpen: boolean = false;
 
   constructor() {
     this.rbTree.insertByAlgorithm(1);

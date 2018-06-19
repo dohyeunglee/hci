@@ -8,6 +8,11 @@
   border-radius: 0 var(--main-border-radius) var(--main-border-radius) 0;
   color: var(--main-white);
   box-shadow: 0 0 2px 1px var(--main-black);
+  transition: left 1s;
+}
+
+.property.__invisible {
+  left: -550px;
 }
 
 .property__header {

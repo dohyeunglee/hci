@@ -16,5 +16,5 @@
   (refreshEmit)="refreshNode(tree.root)"
   (helpEmit)="isHelpModalOpen = true"
 ></panel>
-<alert *ngIf="isAlertOpen" [message]="message" (closeAlertEmit)="isAlertOpen = false"></alert>
+<alert *ngIf="isAlertOpen" [message]="message" [type]="messageType" (closeAlertEmit)="isAlertOpen = false"></alert>
 <help-modals (sendOk)="isHelpModalOpen = false" *ngIf="isHelpModalOpen"></help-modals>
