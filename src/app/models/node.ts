@@ -9,6 +9,14 @@ export class Node {
   parent: Node;
   left: Node;
   right: Node;
+  // FOR D3
+  view = null;
+  leftLine = null;
+  rightLine = null;
+  parentLine = null;
+  parentView = null;
+  x = null;
+  y = null;
 
   constructor(value: number, color = Color.BLACK) {
     this.value = value;
@@ -24,6 +32,14 @@ export class Node {
     cloned.left = this.left && this.left.clone(cloned);
     cloned.right = this.right && this.right.clone(cloned);
     return cloned;
+  }
+
+  setValue(value: number) {
+    this.value = value
+    this.left = new Node(null)
+    this.left.parent = this
+    this.right = new Node(null)
+    this.right.parent = this
   }
 }
 

@@ -1,0 +1,19 @@
+.alert {
+  position: absolute;
+  left: 0;
+  top: 450px;
+  text-align: right;
+  padding: 20px 20px;
+  background-color: var(--main-black);
+  border-radius: 0 var(--main-border-radius) var(--main-border-radius) 0;
+  color: var(--main-white);
+  box-shadow: 0 0 2px 1px var(--main-black);
+}
+
+.alert__close {
+  cursor: pointer;
+}
+
+.alert__error {
+  color: var(--main-red);
+}

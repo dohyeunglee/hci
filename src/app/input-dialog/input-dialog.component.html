@@ -1,0 +1,10 @@
+<div class="dialog_wrapper">
+  <div class="dialog">
+    <div class="dialog__body">
+      {{error ? '정수만 입력 가능합니다!' : '삽입할 노드의 값을 적어주세요!'}}
+      <input (keyup.enter)="validCheck() && clickOkButtonEmit.emit(inputValue)" #input [(ngModel)]="inputValue" class="dialog__input">
+    </div>
+    <button class="dialog__cancel" (click)="clickCancelButtonEmit.emit({})">취소</button>
+    <button class="dialog__ok" (click)="validCheck() && clickOkButtonEmit.emit(inputValue)">확인</button>
+  </div>
+</div>

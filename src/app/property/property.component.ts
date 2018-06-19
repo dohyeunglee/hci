@@ -9,6 +9,7 @@ import { RBProperty } from '../models';
 export class PropertyComponent implements OnInit {
   @Input() violations: RBProperty[] = [];
   properties: string[];
+  toggleView: boolean = false
 
   constructor() {}
 

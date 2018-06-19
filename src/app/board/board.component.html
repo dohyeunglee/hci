@@ -1,0 +1,20 @@
+<div style="width: 100%; text-align: center">
+  <svg width="1300px" height="800px" xmlns="http://www.w3.org/2000/svg">
+
+  </svg>
+</div>
+
+<input-dialog
+  *ngIf="isDialogOpen"
+  (clickCancelButtonEmit)="isDialogOpen = false"
+  (clickOkButtonEmit)="enterInsertMode($event)">
+</input-dialog>
+
+<panel
+  (undoEmit)="undo()"
+  (redoEmit)="redo()"
+  (refreshEmit)="refreshNode(tree.root)"
+  (helpEmit)="isHelpModalOpen = true"
+></panel>
+<alert *ngIf="isAlertOpen" [message]="message" (closeAlertEmit)="isAlertOpen = false"></alert>
+<help-modals (sendOk)="isHelpModalOpen = false" *ngIf="isHelpModalOpen"></help-modals>

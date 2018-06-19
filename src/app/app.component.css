@@ -1,8 +1,47 @@
-.title {
-  float: right;
-  margin-left: 20px;
-}
-
 .nav {
   margin-bottom: 50px;
+  position: relative;
+  user-select: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 30px;
+  background-color: #003545;
+}
+
+.nav__link {
+  color: #eeeeee;
+  text-decoration: none;
+}
+
+.nav__subtitle {
+  margin: 0 10px;
+}
+
+
+.nav__title {
+  margin: 0 10px;
+}
+
+.nav__else {
+  margin: 0 10px;
+}
+
+.nav__red {
+  /*color: #ed6363;*/
+  color: var(--main-red);
+}
+
+.nav__black {
+  color: #fee9d7;
+}
+
+.nav__help {
+  cursor: pointer;
+  float: right;
+}
+
+.nav__help:after {
+  clear: both;
 }

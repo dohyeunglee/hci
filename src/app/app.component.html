@@ -1,14 +1,21 @@
-<nav class="navbar navbar-dark bg-dark nav">
-  <a class="navbar-brand" href="#">
-    <img src="https://www.redblacktree.com/static/images/Logo.png" width="50" height="50" style="vertical-align: top;">
-    <h1 class="title" style="display: inline; float: none; line-height: 50px;">HCI RBTree</h1>
+<nav class="nav">
+  <a class="nav__link" href="#">
+    <span class="nav__subtitle">
+      <span class="nav__red">알고리즘 </span>
+      <span class="nav__black">시각화</span>
+    </span>
+    |
+    <span class="nav__title">
+      <span class="nav__red">레드 </span>
+      <span class="nav__black">블랙</span>
+      트리
+    </span>
+    |
+    <span class="nav__else">
+      HCI
+    </span>
   </a>
+  <!--<span class="nav__help nav__red" (click)="isHelpModalOpen = true">도움말</span>-->
 </nav>
-<toolbar (insert)="onInsert($event)" (clearAll)="onClearAll()" (undo)="onUndo()" (redo)="onRedo()"></toolbar>
 <property [violations]="rbTree.violations"></property>
-<tree *ngIf="rbTree.root"
-      [root]="rbTree.root"
-      (rotateLeft)="onRotateLeft($event)"
-      (rotateRight)="onRotateRight($event)"
-      (delete)="onDelete($event)"
-      (changeColor)="onChangeColor($event)"></tree>
+<board [tree]="rbTree"></board>

@@ -1,15 +1,14 @@
-<div class="card border-secondary mb-3 center">
-  <div class="card-header" style="text-align:center">
-    <b [style.color]="violations?.length !== 0 ? 'red' : 'black'">레드블랙특성</b>
-    <b *ngIf="violations?.length !== 0" style="color: red">(현재 트리가 아래의 특성을 위반하고 있습니다!)</b>
+<div class="property">
+  <div class="property__header">
+    레드 블랙 특성
   </div>
-  <div class="card-body text-secondary">
-    <div class="card-text">
-      <ul>
-        <li *ngFor="let property of properties" [style.color]="(violations | includes: property) ? 'red' : 'black'" [style.font-weight]="(violations | includes: property) ? 'bold' : 'normal'">
-          {{ property }}
-        </li>
-      </ul>
-    </div>
+  <div class="property__body">
+    <ul>
+      <li *ngFor="let property of properties"
+          [class.property__violate]="violations | includes: property">
+        <span class="property__text">{{ property }}</span>
+        <span *ngIf="violations | includes: property" class="property__icon">✗</span>
+      </li>
+    </ul>
   </div>
 </div>

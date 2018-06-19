@@ -1,9 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
 @import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
+@import './normalize.css';
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
-body,
+.active > circle:first-child {
+  stroke: #00454a;
+  stroke-width: 2px;
+}
+
+:root {
+  --main-white: #fee9d7;
+  --main-red: #ed6363;
+  --main-black: #003545;
+  --main-coal: #3c6562;
+  --main-border-radius: 12px;
+}
+
+line {
+  stroke: #003545;
+  stroke-width: 2px;
+}
+
+a:link { color: #003545; text-decoration: none;}
+a:visited { color: #003545; text-decoration: none;}
+a:hover { color: #003545; text-decoration: none;}
+a:active { color: #003545; text-decoration: none;}
+
 html {
-  height: 100%;
-  width: 100%;
-  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+  background-color: #fee9d7;
+}
+
+svg {
+  cursor: pointer;
 }

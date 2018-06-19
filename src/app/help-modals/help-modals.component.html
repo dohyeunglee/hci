@@ -1,0 +1,38 @@
+<div class="modal-wrapper">
+  <modal *ngIf="currIndex == 0" [hasPrev]="false" [title]="'도움말'" [startPolicy]="startPolicy" (swipeLeftEvent)="getNext()" (clickButtonEvent)="sendOk.emit({})">
+    <span class="red">레드-블랙 트리</span>는 이진 탐색 트리 중에서 <span style="red">스스로 균형을 맞추는 트리 중에 하나 입니다.</span> <br/>
+    레드-블랙 트리는 복잡한 자료구조이지만, 실 사용에서 효율적이고, 최악의 경우에도 상당히 우수한 실행 시간을 보이기 때문에, <br/>
+    리눅스 커널의 CFS 알고리즘 구현이나 C++의 map 자료구조 구현 등 다양한 분야에서 쓰이고 있습니다.
+    <img style="max-width: 100%" src="/assets/red_black_tree.png">
+  </modal>
+  <modal *ngIf="currIndex == 1" [title]="'도움말'" [startPolicy]="startPolicy" (swipeRightEvent)="getPrev()" (swipeLeftEvent)="getNext()" (clickButtonEvent)="sendOk.emit({})">
+    레드-블랙 트리는 이름에 알맞게 각 노드에 빨간색과 검은색을 칠할 수 있는데,
+    이를 통해서 균형이 맞춰진답니다.
+    레드-블랙 트리가 올바로 유지되기 위해서는 <span class="red">레드-블랙 특성이라는 4가지의 성질</span>을 만족해야 합니다. 있습니다.
+    이제 각 성질들을 하나씩 알아봅시다. <br />
+    <ul>
+      <li *ngFor="let property of properties">
+        <span class="property__text">{{ property }}</span>
+      </li>
+    </ul>
+  </modal>
+  <modal *ngIf="currIndex == 2" [clearMission]="tree1.root.color" [title]="'도움말'" [startPolicy]="startPolicy" (swipeRightEvent)="getPrev()" (swipeLeftEvent)="getNext()" (clickButtonEvent)="sendOk.emit({})">
+    <h6>루트는 블랙!</h6>
+    레드-블랙 트리의 <span class="red">루트 노드는 항상 검은색</span>이어야 합니다. <br/>
+    <span *ngIf="!tree1.root.color">아래 트리에서 루트 노드를 선택한 뒤에 색상 변경을 통해서 루트 노드의 색을 검은색으로 바꾸어 봅시다.</span>
+    <h6 class="red" *ngIf="tree1.root.color">잘 했어요!</h6>
+    <mini-board [tree]="tree1"></mini-board>
+  </modal>
+  <modal *ngIf="currIndex == 3" [clearMission]="tree1.root.color" [title]="'도움말'" [startPolicy]="startPolicy" (swipeRightEvent)="getPrev()" (swipeLeftEvent)="getNext()" (clickButtonEvent)="sendOk.emit({})">
+    <h6>루트는 블랙!</h6>
+    <span>레드-블랙 트리</span>의 루트 노드는 항상 검은색이어야 합니다. <br/>
+    {{ tree1.root.color === 0 ? '아래 트리에서 루트 노드를 선택한 뒤에 색상 변경을 통해서 루트 노드의 색을 검은색으로 바꾸어 봅시다.' : '잘 했어요!' }}
+    <mini-board [tree]="tree1"></mini-board>
+  </modal>
+  <modal *ngIf="currIndex == 4" [clearMission]="tree1.root.color" [title]="'도움말'" [startPolicy]="startPolicy" (swipeRightEvent)="getPrev()" (swipeLeftEvent)="getNext()" (clickButtonEvent)="sendOk.emit({})">
+    <h6>루트는 블랙!</h6>
+    <span>레드-블랙 트리</span>의 루트 노드는 항상 검은색이어야 합니다. <br/>
+    {{ tree1.root.color === 0 ? '아래 트리에서 루트 노드를 선택한 뒤에 색상 변경을 통해서 루트 노드의 색을 검은색으로 바꾸어 봅시다.' : '잘 했어요!' }}
+    <mini-board [tree]="tree1"></mini-board>
+  </modal>
+</div>

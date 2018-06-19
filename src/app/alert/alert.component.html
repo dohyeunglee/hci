@@ -1,0 +1,4 @@
+<div class="alert">
+  <span class="alert__message" [class.alert__error]="type === 'error'">{{message}}&nbsp;</span>
+  <span class="alert__close" (click)="closeAlertEmit.emit({})">✘</span>
+</div>
